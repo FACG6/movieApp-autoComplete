@@ -1,7 +1,7 @@
 const {
 	handleHome,
 	handleStatics,
-	// handleAutoComplete,
+	handleAutoComplete,
 	handleNotFound
 } = require('./handlers');
 
@@ -13,12 +13,12 @@ const router = (request, response) => {
 	} else if (endpoint.includes('/public') || endpoint.includes('favicon')) {
 		handleStatics(request, response);
     } 
-    // else if (endpoint === '/auto-complete') {
-	// 	// handleAutoComplete(request, response);
-    // } 
+    else if (endpoint === '/auto-complete') {
+		handleAutoComplete(request, response);
+    } 
     else {
 		handleNotFound(request, response);
 	}
 }
 
-module.exports = router;
+module.exports = router ;
