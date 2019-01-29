@@ -50,4 +50,16 @@ const path = require('path')
 
 
 
-// handleEroor <<<<ahmed>>>>
+// handleError <<<<ahmed>>>>
+const handleError = (request, response) => {
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    response.write('<h1>404 Page not found !!!</h1>');
+    response.end();
+} 
+
+module.exports = {
+    handlehomePage,
+    handleStatics,
+    handleAutoComplete,
+    handleError,
+}
