@@ -17,3 +17,5 @@ const router = (request, response) => {
 		handleNotFound(request, response);
 	}
 }
+
+module.exports = router ;
