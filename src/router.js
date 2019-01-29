@@ -3,7 +3,7 @@ const {
     hanleStatics,
     handleAutoComplete,
     handleNotFound
-} = require('./hanlers');
+} = require('./handlers');
 
 const router = (request, response)=>{
     const endpoint = request.url;
