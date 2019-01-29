@@ -3,13 +3,17 @@ const getData = require("../src/filterResults");
 
 tape("testing filterResults", t => {
   t.deepEquals(
-    getData("the hunger"),
+    getData({ searchInput: "the hunger" }),
     ["The Hunger Games: Mockingjay – Part 1"],
     "pass"
   );
-  t.deepEquals(getData("horrible"), ["Horrible Bosses 2"], "pass");
   t.deepEquals(
-    getData("fa"),
+    getData({ searchInput: "horrible" }),
+    ["Horrible Bosses 2"],
+    "pass"
+  );
+  t.deepEquals(
+    getData({searchInput: "fa"}),
     [
       "Far from the Madding Crowd",
       "Father Figures",
@@ -19,12 +23,12 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData("ali"),
+    getData({ searchInput: "ali" }),
     ["Alice Through the Looking Glass", "Alien: Covenant"],
     "pass"
   );
   t.deepEquals(
-    getData("the s"),
+    getData({ searchInput: "the s" }),
     [
       "The SpongeBob Movie: Sponge Out of Water",
       "The Second Best Exotic Marigold Hotel",
@@ -44,7 +48,7 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData("be"),
+    getData({ searchInput: "be" }),
     [
       "Beyond the Reach",
       "Ben-Hur",
@@ -61,7 +65,7 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData("sa"),
+    getData({ searchInput: "sa" }),
     ["San Andreas", "Sausage Party", "Same Kind of Different as Me", "Samson"],
     "pass"
   );
