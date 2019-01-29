@@ -1,0 +1,28 @@
+{
+  "name": "movieApp-autoComplete",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG6/movieApp-autoComplete.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG6/movieApp-autoComplete/issues"
+  },
+  "homepage": "https://github.com/FACG6/movieApp-autoComplete#readme",
+  "dependencies": {
+    "nodemon": "^1.18.9",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.2"
+  }
+}
