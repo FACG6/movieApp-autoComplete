@@ -8,9 +8,21 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" method="POST">
-      <input type="text" name="input" /> <input type="submit" value="Search" />
-    </form>
-    <main class="container"></main>
+    <header class="header">
+      <nav class="navbar">
+        <h1 class="navbar__h1">Akshenha Team</h1>
+        <form action="" method="POST" class="navbar__form">
+          <input type="text" name="input" placeholder="Movie Name" class="navbar__form--input" />
+          <input type="submit" value="Search" class="navbar__form--search" />
+        </form>
+      </nav>
+    </header>
+    <main>
+      <section class="homeSection">
+        <h1 class="homeSection__h1">WELCOME !</h1>
+        <h4 class="homeSection__h4">Find Your Movie</h4>
+      </section>
+      <section class="resultRender"></section>
+    </main>
   </body>
 </html>
