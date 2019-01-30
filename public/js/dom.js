@@ -1,4 +1,4 @@
-const createMovieNode = (elementsName, tagsName) => {
+const createElements = (elementsName, tagsName) => {
   if (elementsName.length !== tagsName.length) return "error";
   let nodes = {};
   elementsName.map((e, i) => (nodes[e] = document.createElement(tagsName[i])));
@@ -28,12 +28,17 @@ function querySelectors(selectorsName, enterTypeofQuery) {
   return elements;
 }
 
+function scrollToResult() {
+  setTimeout(() => (html.scrollTop = resultRender.offsetTop), 200);
+}
+
 const {
   html,
   navbar,
   navbar__h1,
   navbar__form,
   navbar__forminput,
+  navbar__formsearch,
   homeSection,
   resultRender
 } = querySelectors(
@@ -43,6 +48,7 @@ const {
     "navbar__h1",
     "navbar__form",
     "navbar__forminput",
+    "navbar__formsearch",
     "homeSection",
     "resultRender"
   ],
@@ -51,8 +57,14 @@ const {
     ".navbar",
     ".navbar__h1",
     ".navbar__form",
-    ".navbar__forminput",
+    ".navbar__form--input",
+    "navbar__form--search",
     ".homeSection",
     ".resultRender"
   ]
 );
+
+navbar__formsearch.addEventListener("click", e => {
+  e.preventDefault();
+  scrollToResult();
+});
