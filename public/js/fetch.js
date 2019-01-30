@@ -28,5 +28,6 @@ const getImageUrl = (moviename) => {
 
 module.exports = {
   getImageUrl,
-  getMovieUrl
+  getMovieUrl,
+  fetch
 }
