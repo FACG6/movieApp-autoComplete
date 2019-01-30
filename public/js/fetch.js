@@ -25,3 +25,8 @@ const getMovieUrl = (query) => {
 const getImageUrl = (moviename) => {
   return `https://image.tmdb.org/t/p/w600_and_h900_bestv2${moviename}`;
 }
+
+module.exports = {
+  getImageUrl,
+  getMovieUrl
+}
