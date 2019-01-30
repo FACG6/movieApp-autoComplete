@@ -1,8 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .navbar {
   background-color: black;
   position: fixed;
   width: 100%;
-  height: 50px;
+  height: 80px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -10,27 +15,106 @@
 .navbar__h1 {
   color: white;
   flex: 3;
+  font-size: 50px;
+  padding-left: 30px;
+}
+.navbar__form {
+  display: flex;
 }
 .navbar__form--input {
-  height: 30px;
-  width: 50%;
+  height: 50px;
+  width: 60%;
+  font-size: 20px;
+  padding: 20px;
+  margin-right: 10px;
 }
 .navbar__form--search {
-  height: 36px;
+  height: 49px;
   font-weight: bold;
+  width: 80px;
 }
 .navbar__form {
   flex: 3;
 }
 .homeSection {
+  display: flex;
   background: url(https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  color: white;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  color: white;
+}
+.homeSection__h1 {
+  font-size: 70px;
+}
+.homeSection__h4 {
+  font-size: 30px;
+  padding-top: 30px;
+}
+.resultRender__h1 {
+  text-align: center;
+  font-size: 100px;
+  padding-top: 50px;
+}
+.resultRender__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+.resultRender__containerMovie {
+  background: rgb(234, 234, 234);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 350px;
+  height: 520px;
+  margin: 0px 10px 30px 10px;
+}
+.resultRender__containerMovie--img {
+  width: 300px;
+  margin-top: 15px;
+}
+.resultRender__containerMovie--spanTitle {
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 850px) {
+  .navbar__h1 {
+    font-size: 20px;
+    padding: 5px;
+    flex: 2;
+  }
+  .navbar__form {
+    justify-content: space-around;
+  }
+  .navbar__form--input {
+    height: 30px;
+    width: 70%;
+    font-size: 15px;
+    padding: 0px;
+    margin: 0;
+  }
+  .resultRender__h1 {
+    font-size: 50px;
+  }
+  .navbar__form--search {
+    height: 30px;
+    width: 40px;
+    font-size: 5px;
+  }
+  .homeSection__h1 {
+    font-size: 40px;
+  }
+  .homeSection__h4 {
+    font-size: 20px;
+    padding-top: 30px;
+  }
 }

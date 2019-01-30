@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./public/css/style.css" />
-    <title>Document</title>
+    <title>Akshenha Team</title>
   </head>
   <body>
     <header class="header">
@@ -14,15 +14,34 @@
         <form action="" method="POST" class="navbar__form">
           <input type="text" name="input" placeholder="Movie Name" class="navbar__form--input" />
           <input type="submit" value="Search" class="navbar__form--search" />
+          <datalist class="movieList"></datalist>
         </form>
-      </nav>
-    </header>
-    <main>
+        </nav>
+        </header>
+      <main>
       <section class="homeSection">
         <h1 class="homeSection__h1">WELCOME !</h1>
         <h4 class="homeSection__h4">Find Your Movie</h4>
       </section>
-      <section class="resultRender"></section>
+      <section class="resultRender">
+        <h1 class="resultRender__h1">search result</h1>
+        <div class="resultRender__container">
+          <div class="resultRender__containerMovie">
+            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/rmnQ9jKW72bHu8uKlMjPIb2VLMI.jpg" class="resultRender__containerMovie--img">
+            <span class="resultRender__containerMovie--spanTitle">Baby</span>
+          </div>
+          <div class="resultRender__containerMovie">
+            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/rmnQ9jKW72bHu8uKlMjPIb2VLMI.jpg" class="resultRender__containerMovie--img">
+            <span class="resultRender__containerMovie--spanTitle">Baby</span>
+          </div>
+          <div class="resultRender__containerMovie">
+            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/rmnQ9jKW72bHu8uKlMjPIb2VLMI.jpg" class="resultRender__containerMovie--img">
+            <span class="resultRender__containerMovie--spanTitle">Baby</span>
+          </div>
+        </div>
+      </section>
     </main>
+    <script src="./public/js/fetch.js"></script>
+    <script src="./public/js/dom.js"></script>
   </body>
 </html>
