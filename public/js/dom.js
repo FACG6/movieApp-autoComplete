@@ -1,21 +1,20 @@
 const inputValue = navbar__forminput.value.trim();
 
-navbar__forminput.addEventListener('input', () => {
-	fetch(inputValue, 'POST', 'auto-complete', (error, response) => {
-		renderAutoComplete(error, response);
-	})
+navbar__forminput.addEventListener("input", () => {
+  fetch(inputValue, "POST", "auto-complete", (error, response) => {
+    renderAutoComplete(error, response);
+  });
 });
 
 const createMovieNode = (elementsName, tagsName, className) => {
-	if (elementsName.length !== tagsName.length) return "error";
-	let nodes = {};
-	elementsName.map((e, i) => {
-		nodes[e] = document.createElement(tagsName[i]);
-		nodes[e].classList.add(className[i])
+  if (elementsName.length !== tagsName.length) return "error";
+  let nodes = {};
+  elementsName.map((e, i) => {
+    nodes[e] = document.createElement(tagsName[i]);
+    nodes[e].classList.add(className[i]);
+  });
 
-	})
-
-	return nodes;
+  return nodes;
 };
 
 function appendElement(requestelementsName, append) {
@@ -70,32 +69,34 @@ const {
   ]
 );
 
-const renderMovies => (error, response) {
-	if (error) {
-		const warnning = document.createElement('h1');
-		warnning.textContent = `Error, ${error}`;
-		resultRender.innerHTML = "";
-		resultRender.appendChild(warnning);
-	} else {
-		if (response.length === 0) {
-			const noMovies = document.createElement('p');
-			noMovies.textContent = "Sorry, NO Movies found with the name you entered";
-			resultRender.innerHTML = "";
-			resultRender.appendChild(noMovies);
-		} else {
-			const movieResult = {
-				movieContainer,
-				movieImage,
-				movieTitle,
-			} = createMovieNode(
-				['movieContainer', 'movieImage', 'movieTitle'], ['div', 'img', 'h3'], ['movieContainer', 'movieImage', 'movieTitle']
-			);
-			appendElement(...movieResult)
-		}
-	}
+const renderMovies = (error, response) => {
+  if (error) {
+    const warnning = document.createElement("h1");
+    warnning.textContent = `Error, ${error}`;
+    resultRender.innerHTML = "";
+    resultRender.appendChild(warnning);
+  } else {
+    if (response.length === 0) {
+      const noMovies = document.createElement("p");
+      noMovies.textContent = "Sorry, NO Movies found with the name you entered";
+      resultRender.innerHTML = "";
+      resultRender.appendChild(noMovies);
+    } else {
+      const movieResult = ({
+        movieContainer,
+        movieImage,
+        movieTitle
+      } = createMovieNode(
+        ["movieContainer", "movieImage", "movieTitle"],
+        ["div", "img", "h3"],
+        ["movieContainer", "movieImage", "movieTitle"]
+      ));
+      appendElement(...movieResult);
+    }
+  }
 };
 
 navbar__formsearch.addEventListener("click", e => {
-	e.preventDefault();
-	scrollToResult();
+  e.preventDefault();
+  scrollToResult();
 });
