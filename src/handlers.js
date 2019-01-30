@@ -54,6 +54,7 @@ const handleAutoComplete = (request, response) => {
 		request.on('end', () => {
 				const converteData = querystring.parse(allData);
 				const data = getData(converteData);
+				resonse.writeHead(200, {'content-type' : 'application/json' })
 				response.end(JSON.stringify(data);
 				})
 		}

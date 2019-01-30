@@ -1,3 +1,13 @@
+
+const input = document.querySelector('.navbar__form--input');
+const inputValue = input.value.trim();
+
+input.addEventListener('input', () => {
+    fetch(inputValue, 'POST', 'auto-complete', (error, response) => {
+      renderAutoComplete(error, response);
+    })
+});
+
 const createMovieNode = (elementsName, tagsName) => {
   if (elementsName.length !== tagsName.length) return "error";
   let nodes = {};
@@ -56,3 +66,33 @@ const {
     ".resultRender"
   ]
 );
+
+const renderMovies => (error, response){
+  if (error) {
+    const warnning = document.createElement('h1');
+    warnning.textContent = error;
+    resultRender.innerHTML = "";
+    resultRender.appendChild(warnning);
+  }
+  else {
+    if(response.length === 0 ){
+      const noMovies = document.createElement('p');
+      noMovies.textContent = "Sorry, NO Movies found with the name you entered";
+      resultRender.innerHTML = "";
+      resultRender.appendChild(noMovies);
+    }
+    else {
+      const movieResult = {
+        movieContainer,
+        movieImage,
+        movieTitle,
+        overView
+      } = createMovieNode(
+        ['movieContainer', 'movieImage', 'movieTitle', 'overView '],
+          ['div', 'img', 'h3', 'p'],
+          ['movieContainer', 'movieImage', 'movieTitle', 'overView']
+          );
+      appendElement(...movieResult)
+    }
+  }
+};
