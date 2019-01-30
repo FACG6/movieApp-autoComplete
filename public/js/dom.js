@@ -4,9 +4,7 @@ const createMovieNode = (elementsName, tagsName, className) => {
   elementsName.map((e, i) => {
     nodes[e] = document.createElement(tagsName[i]);
     nodes[e].classList.add(className[i])
-
   })
-
   return nodes;
 };
 
