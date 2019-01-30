@@ -1,7 +1,7 @@
 const fetch = (value, method, url, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200){
+    if (xhr.readyState === 4 && xhr.status === 200) {
       if (xhr.status !== 200) {
         const error = xhr.status;
         callback(error, null);
@@ -17,3 +17,11 @@ const fetch = (value, method, url, callback) => {
   xhr.open(method, url);
   xhr.send(value);
 };
+
+const getMovieUrl = (query) => {
+  return `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${query}`;
+
+}
+const getImageUrl = (moviename) => {
+  return `https://image.tmdb.org/t/p/w600_and_h900_bestv2${moviename}`;
+}
