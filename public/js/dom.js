@@ -1,6 +1,6 @@
 const inputValue = navbar__forminput.value.trim();
 
-input.addEventListener('input', () => {
+navbar__forminput.addEventListener('input', () => {
 	fetch(inputValue, 'POST', 'auto-complete', (error, response) => {
 		renderAutoComplete(error, response);
 	})
