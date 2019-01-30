@@ -47,16 +47,17 @@ const handleStatics = (request, response) => {
 }
 
 const handleAutoComplete = (request, response) => {
-    let allData = '';
-    request.on('data', (chunckData) => {
-        allData += chunckData;
-    });
-    request.on('end', () => {
-        const converteData = querystring.parse(allData);
-        const data = getData(converteData);
-        response.end(JSON.stringify(data));
-    })
-}
+		let allData = '';
+		request.on('data', (chunckData) => {
+			allData += chunckData;
+		});
+		request.on('end', () => {
+				const converteData = querystring.parse(allData);
+				const data = getData(converteData);
+				resonse.writeHead(200, {'content-type' : 'application/json' })
+				response.end(JSON.stringify(data));
+				})
+		}
 
 const handleNotFoundError = (request, response) => {
     response.writeHead(200, {
@@ -79,3 +80,5 @@ module.exports = {
     handleNotFoundError,
     handleServerError,
 }
+
+

@@ -1,16 +1,14 @@
-const createMovieNode = (elementsName, tagsName) => {
+const createMovieNode = (elementsName, tagsName, className) => {
   if (elementsName.length !== tagsName.length) return "error";
   let nodes = {};
-  elementsName.map((e, i) => (nodes[e] = document.createElement(tagsName[i])));
+  elementsName.map((e, i) => {
+    nodes[e] = document.createElement(tagsName[i]);
+    nodes[e].classList.add(className[i])
+
+  })
+
   return nodes;
 };
-
-const appendElement = (requestelementsName, append) => {
-  if (requestelementsName.length === 0) return "error";
-  requestelementsName.forEach(requestlement =>
-    append.appendChild(requestlement)
-  );
-}
 
 const querySelectors = (selectorsName, enterTypeofQuery) => {
   if (selectorsName.length !== enterTypeofQuery.length) return "Error";
@@ -33,7 +31,9 @@ const {
   navbar__forminput,
   navbar__formsearch,
   homeSection,
-  resultRender
+  resultRender,
+  movieList,
+  resultRenderContainer
 } = querySelectors(
   [
     "html",
@@ -44,7 +44,8 @@ const {
     "navbar__formsearch",
     "homeSection",
     "resultRender",
-    "movieList"
+    "movieList",
+    "resultRenderContainer"
   ], [
     "html",
     ".navbar",
@@ -54,10 +55,18 @@ const {
     ".navbar__form--search",
     ".homeSection",
     ".resultRender",
-    ".movieList"
+    ".movieList",
+    '.resultRender__container'
   ]
 );
 
+const inputValue = navbar__forminput.value.trim();
+
+navbar__forminput.addEventListener('input', () => {
+  fetch(inputValue, 'POST', 'auto-complete', (error, response) => {
+    renderAutoComplete(error, response);
+  })
+});
 
 navbar__formsearch.addEventListener('submit', e => {
   e.preventDefault();
@@ -80,3 +89,32 @@ const renderAutoComplete = (error, suggestions) => {
     movieList.appendChild(option);
   })
 }
+const renderMovies = (error, response) => {
+  if (error) {
+    const warnning = document.createElement('h1');
+    warnning.textContent = `Error, ${error}`;
+    resultRenderContainer.innerHTML = "";
+    resultRenderContainer.appendChild(warnning);
+  } else {
+    if (response.length === 0) {
+      const noMovies = document.createElement('p');
+      noMovies.textContent = "Sorry, NO Movies found with the name you entered";
+      resultRenderContainer.innerHTML = "";
+     resultRenderContainer.appendChild(noMovies);
+    } else {
+      const movieResult = {
+        movieContainer,
+        movieImage,
+        movieTitle,
+      } = createMovieNode(
+        ['movieContainer', 'movieImage', 'movieTitle'], ['div', 'img', 'span'], ['resultRender__containerMovie', 'resultRender__containerMovie--img', 'resultRender__containerMovie--spanTitle']
+      );
+      resultRenderContainer.appendChild(...movieResult);
+    }
+  }
+};
+
+navbar__formsearch.addEventListener("click", e => {
+  e.preventDefault();
+  scrollToResult();
+});
