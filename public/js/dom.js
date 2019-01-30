@@ -3,8 +3,8 @@ const createMovieNode = (elementsName, tagsName, className) => {
   let nodes = {};
   elementsName.map((e, i) => {
     nodes[e] = document.createElement(tagsName[i]);
-    nodes[e].classList.add(className[i]);
-  });
+    nodes[e].classList.add(className[i])
+  })
   return nodes;
 };
 
@@ -15,11 +15,11 @@ const querySelectors = (selectorsName, enterTypeofQuery) => {
     (e, i) => (elements[selectorsName[i]] = document.querySelector(e))
   );
   return elements;
-};
+}
 
 const scrollToResult = () => {
   setTimeout(() => (html.scrollTop = resultRender.offsetTop), 200);
-};
+}
 
 const {
   html,
@@ -44,8 +44,7 @@ const {
     "resultRender",
     "movieList",
     "resultRenderContainer"
-  ],
-  [
+  ], [
     "html",
     ".navbar",
     ".navbar__h1",
@@ -55,49 +54,41 @@ const {
     ".homeSection",
     ".resultRender",
     ".movieList",
-    ".resultRender__container"
+    '.resultRender__container'
   ]
 );
 
-navbar__forminput.addEventListener("input", () => {
-  if (navbar__forminput.value.trim()) {
-    const inputValue = navbar__forminput.value.trim();
-    fetch(inputValue, "POST", "/auto-complete", (error, response) => {
-      renderAutoComplete(error, response);
-    });
-  }
+navbar__forminput.addEventListener('input', () => {
+  const inputValue = navbar__forminput.value.trim();
+  fetch(inputValue, 'POST', '/auto-complete', (error, response) => {
+    renderAutoComplete(error, response);
+  })
 });
 
-navbar__formsearch.addEventListener("click", e => {
+navbar__formsearch.addEventListener('click', (e) => {
   e.preventDefault();
-  resultRender.classList.remove("resultRender");
+  resultRender.classList.remove('resultRender')
   if (!navbar__forminput.value) {
     resultRenderContainer.innerHTML = "";
-
-    const { warning } = createMovieNode(
-      ["warning"],
-      ["p"],
-      ["resultRender__container--warning"]
-    );
-
+    const {warning} = createMovieNode(['warning'], ['p'], ['resultRender__container--warning']);
     warning.textContent = "please, Enter a Movie Name";
     resultRenderContainer.appendChild(warning);
   } else {
     const inputValue = navbar__forminput.value.trim();
-    const api_url = getMovieUrl(inputValue);
+    const api_url = `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${inputValue}`;
     fetch(null, "GET", api_url, (error, movies) => {
       renderMovies(error, movies.results);
-    });
+    })
     scrollToResult();
   }
-});
+})
 
 const renderAutoComplete = (error, suggestions) => {
   if (error) {
-    if (error === "500") fetch(null, "GET", "/server-error", null);
-    else fetch(null, "GET", "/jgjs", null);
+    if (error === "500") fetch(null, 'GET', '/server-error', null)
+    else fetch(null, 'GET', '/jgjs', null);
   }
-  movieList.innerHTML = "";
+  movieList.innerHTML = '';
   suggestions.forEach(movie => {
     const {movieOption} = createMovieNode(['movieOption'], ['option'], ['dataList__movieOption']);
     movieOption.value = movie;
@@ -117,23 +108,24 @@ const renderMovies = (error, response) => {
       resultRenderContainer.innerHTML = "";
       resultRenderContainer.appendChild(sorryMsg);
     } else {
-      resultRenderContainer.innerHTML = "";
+      resultRenderContainer.innerHTML = ""
       response.forEach(movie => {
+        const imagesUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
         const {
           movieContainer,
           movieImage,
           movieTitle,
         } = createMovieNode(
           ['movieContainer', 'movieImage', 'movieTitle'], ['div', 'img', 'span'], ['resultRender__containerMovie', 'resultRender__containerMovie--img', 'resultRender__containerMovie--spanTitle']
-
         );
-        movieImage.src = getImageUrl(movie.poster_path);
+        movieImage.src = `${imagesUrl}${movie.poster_path}`;
         movieImage.setAttribute('alt',  movie.original_title);
         movieTitle.textContent = movie.original_title;
         resultRenderContainer.appendChild(movieContainer);
         movieContainer.appendChild(movieImage);
         movieContainer.appendChild(movieTitle);
-      });
+      })
+
     }
   }
 };
