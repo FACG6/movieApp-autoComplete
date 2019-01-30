@@ -172,7 +172,15 @@ html {
     padding-top: 30px;
   }
 }
-
-.resultRender__container--warning{
+/******/
+/* .resultRender__container--warning{
   font-size: 14px;
 }
+
+.dataList__movieOption{
+  font-size: 14px;
+}
+
+.resultRender__container--sorryMsg{
+  font-size: 14px;
+} */

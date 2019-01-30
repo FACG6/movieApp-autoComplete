@@ -92,24 +92,23 @@ const renderAutoComplete = (error, suggestions) => {
   }
   movieList.innerHTML = '';
   suggestions.forEach(movie => {
-    const option = document.createElement('option');
-    option.classList.add('dataList__movieOption');
-    option.value = movie;
-    movieList.appendChild(option);
+    const {movieOption} = createMovieNode(['movieOption'], ['option'], ['dataList__movieOption']);
+    movieOption.value = movie;
+    movieList.appendChild(movieOption);
   })
 }
 const renderMovies = (error, response) => {
   if (error) {
-    const warnning = document.createElement('h1');
-    warnning.textContent = `Error, ${error}`;
+    const { warnningMsg } = createMovieNode(['warnningMsg'], ['h1'], ['resultRender__container--warning'])
+    warnningMsg.textContent = `Error, ${error}`;
     resultRenderContainer.innerHTML = "";
-    resultRenderContainer.appendChild(warnning);
+    resultRenderContainer.appendChild(warnningMsg);
   } else {
     if (response.length === 0) {
-      const noMovies = document.createElement('p');
-      noMovies.textContent = "Sorry, NO Movies found with the name you entered";
+      const { sorryMsg } = createMovieNode(['sorryMsg'], ['p'], ['resultRender__container--sorryMsg'])
+      sorryMsg.textContent = "Sorry, NO Movies found with the name you entered";
       resultRenderContainer.innerHTML = "";
-      resultRenderContainer.appendChild(noMovies);
+      resultRenderContainer.appendChild(sorryMsg);
     } else {
       resultRenderContainer.innerHTML = ""
       response.forEach(movie => {
@@ -121,6 +120,7 @@ const renderMovies = (error, response) => {
           ['movieContainer', 'movieImage', 'movieTitle'], ['div', 'img', 'span'], ['resultRender__containerMovie', 'resultRender__containerMovie--img', 'resultRender__containerMovie--spanTitle']
         );
         movieImage.src = getImageUrl(movie.poster_path);
+        movieImage.setAttribute('alt',  movie.original_title);
         movieTitle.textContent = movie.original_title;
         resultRenderContainer.appendChild(movieContainer);
         movieContainer.appendChild(movieImage);
