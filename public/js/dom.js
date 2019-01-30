@@ -1,4 +1,4 @@
-const createElements = (elementsName, tagsName) => {
+const createMovieNode = (elementsName, tagsName) => {
   if (elementsName.length !== tagsName.length) return "error";
   let nodes = {};
   elementsName.map((e, i) => (nodes[e] = document.createElement(tagsName[i])));
@@ -58,7 +58,7 @@ const {
     ".navbar__h1",
     ".navbar__form",
     ".navbar__form--input",
-    "navbar__form--search",
+    ".navbar__form--search",
     ".homeSection",
     ".resultRender"
   ]

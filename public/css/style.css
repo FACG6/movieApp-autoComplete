@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 .navbar {
   background-color: black;
   position: fixed;
@@ -62,7 +65,7 @@
 .resultRender__h1 {
   text-align: center;
   font-size: 100px;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 .resultRender__container {
   display: flex;
