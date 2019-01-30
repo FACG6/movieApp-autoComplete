@@ -3,9 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 .navbar {
   background-color: black;
   position: fixed;
@@ -15,15 +17,18 @@ html {
   justify-content: flex-start;
   align-items: center;
 }
+
 .navbar__h1 {
   color: white;
   flex: 3;
   font-size: 50px;
   padding-left: 30px;
 }
+
 .navbar__form {
   display: flex;
 }
+
 .navbar__form--input {
   height: 50px;
   width: 60%;
@@ -32,6 +37,7 @@ html {
   margin-right: 10px;
   border-radius: 8px;
 }
+
 .navbar__form--search {
   height: 49px;
   font-weight: bold;
@@ -40,9 +46,11 @@ html {
   border-radius: 8px;
 
 }
+
 .navbar__form {
   flex: 3;
 }
+
 .homeSection {
   display: flex;
   background: url(https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80);
@@ -55,18 +63,22 @@ html {
   height: 100vh;
   color: white;
 }
+
 .homeSection__h1 {
   font-size: 70px;
 }
+
 .homeSection__h4 {
   font-size: 30px;
   padding-top: 30px;
 }
+
 .resultRender__h1 {
   text-align: center;
   font-size: 100px;
   padding-top: 100px;
 }
+
 .resultRender__container {
   display: flex;
   flex-direction: row;
@@ -74,6 +86,11 @@ html {
   flex-wrap: wrap;
   padding-top: 50px;
 }
+
+.resultRender {
+  display: none;
+}
+
 .resultRender__containerMovie {
   background: rgb(234, 234, 234);
   display: flex;
@@ -85,10 +102,12 @@ html {
   height: 520px;
   margin: 0px 10px 30px 10px;
 }
+
 .resultRender__containerMovie--img {
   width: 300px;
   margin-top: 15px;
 }
+
 .resultRender__containerMovie--spanTitle {
   font-size: 30px;
 }
@@ -99,9 +118,11 @@ html {
     padding: 5px;
     flex: 2;
   }
+
   .navbar__form {
     justify-content: space-evenly;
   }
+
   .navbar__form--input {
     height: 40px;
     width: 70%;
@@ -111,19 +132,27 @@ html {
     border-radius: 5px;
 
   }
+
   .resultRender__h1 {
     font-size: 50px;
   }
+
   .navbar__form--search {
     height: 40px;
     width: 60px;
     font-size: 1em;
   }
+
   .homeSection__h1 {
     font-size: 40px;
   }
+
   .homeSection__h4 {
     font-size: 20px;
     padding-top: 30px;
   }
+}
+
+.resultRender__container--warning{
+  font-size: 14px;
 }

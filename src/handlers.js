@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
+const getData = require('./filterResults');
 
 const handleHome = (req, res) => {
     const filePath = path.join(__dirname, "..", "public", "index.html");
@@ -29,7 +30,6 @@ const handleStatics = (request, response) => {
         ico: 'image/x-icon'
     }
     const filePath = path.join(__dirname, '..', ...endpoint.split('/'));
-    console.log(filePath);
     fs.readFile(filePath, (err, file) => {
         if (err) {
             response.writeHead(500, {
@@ -47,15 +47,16 @@ const handleStatics = (request, response) => {
 }
 
 const handleAutoComplete = (request, response) => {
-		let allData = '';
+		let allData = 'theData=';
 		request.on('data', (chunckData) => {
 			allData += chunckData;
 		});
 		request.on('end', () => {
-				const converteData = querystring.parse(allData);
-				const data = getData(converteData);
-				resonse.writeHead(200, {'content-type' : 'application/json' })
-				response.end(JSON.stringify(data));
+                const converteData = querystring.parse(allData);
+                const data = getData(converteData);
+                response.writeHead(200, {'content-type' : 'application/json' })
+                response.end(JSON.stringify(data));
+    
 				})
 		}
 
