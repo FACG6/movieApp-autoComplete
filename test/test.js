@@ -1,5 +1,9 @@
 const tape = require("tape");
 const getData = require("../src/filterResults");
+const { 
+  getMovieUrl,
+  getImageUrl
+} = require("../public/js/fetch")
 
 tape("testing filterResults", t => {
   t.deepEquals(
@@ -71,3 +75,13 @@ tape("testing filterResults", t => {
   );
   t.end();
 });
+
+tape("testing getMovieUrl", t => {
+  t.deepEquals(
+    getMovieUrl('baby driver'),
+    'https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=baby%20driver',
+    "pass"
+  );
+  t.end();
+});
+                
