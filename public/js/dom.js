@@ -3,8 +3,8 @@ const createMovieNode = (elementsName, tagsName, className) => {
   let nodes = {};
   elementsName.map((e, i) => {
     nodes[e] = document.createElement(tagsName[i]);
-    nodes[e].classList.add(className[i])
-  })
+    nodes[e].classList.add(className[i]);
+  });
   return nodes;
 };
 
@@ -15,11 +15,11 @@ const querySelectors = (selectorsName, enterTypeofQuery) => {
     (e, i) => (elements[selectorsName[i]] = document.querySelector(e))
   );
   return elements;
-}
+};
 
 const scrollToResult = () => {
   setTimeout(() => (html.scrollTop = resultRender.offsetTop), 200);
-}
+};
 
 const {
   html,
@@ -44,7 +44,8 @@ const {
     "resultRender",
     "movieList",
     "resultRenderContainer"
-  ], [
+  ],
+  [
     "html",
     ".navbar",
     ".navbar__h1",
@@ -54,23 +55,29 @@ const {
     ".homeSection",
     ".resultRender",
     ".movieList",
-    '.resultRender__container'
+    ".resultRender__container"
   ]
 );
 
-navbar__forminput.addEventListener('input', () => {
-  const inputValue = navbar__forminput.value.trim();
-  fetch(inputValue, 'POST', '/auto-complete', (error, response) => {
-    renderAutoComplete(error, response);
-  })
+navbar__forminput.addEventListener("input", () => {
+  if (navbar__forminput.value.trim()) {
+    const inputValue = navbar__forminput.value.trim();
+    fetch(inputValue, "POST", "/auto-complete", (error, response) => {
+      renderAutoComplete(error, response);
+    });
+  }
 });
 
-navbar__formsearch.addEventListener('click', (e) => {
+navbar__formsearch.addEventListener("click", e => {
   e.preventDefault();
-  resultRender.classList.remove('resultRender')
+  resultRender.classList.remove("resultRender");
   if (!navbar__forminput.value) {
     resultRenderContainer.innerHTML = "";
-    const {warning} = createMovieNode(['warning'], ['p'], ['resultRender__container--warning']);
+    const { warning } = createMovieNode(
+      ["warning"],
+      ["p"],
+      ["resultRender__container--warning"]
+    );
     warning.textContent = "please, Enter a Movie Name";
     resultRenderContainer.appendChild(warning);
   } else {
@@ -78,54 +85,55 @@ navbar__formsearch.addEventListener('click', (e) => {
     const api_url = `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${inputValue}`;
     fetch(null, "GET", api_url, (error, movies) => {
       renderMovies(error, movies.results);
-    })
+    });
     scrollToResult();
   }
-})
+});
 
 const renderAutoComplete = (error, suggestions) => {
   if (error) {
-    if (error === "500") fetch(null, 'GET', '/server-error', null)
-    else fetch(null, 'GET', '/jgjs', null);
+    if (error === "500") fetch(null, "GET", "/server-error", null);
+    else fetch(null, "GET", "/jgjs", null);
   }
-  movieList.innerHTML = '';
+  movieList.innerHTML = "";
   suggestions.forEach(movie => {
-    const option = document.createElement('option');
-    option.classList.add('dataList__movieOption');
+    const option = document.createElement("option");
+    option.classList.add("dataList__movieOption");
     option.value = movie;
     movieList.appendChild(option);
-  })
-}
+  });
+};
 const renderMovies = (error, response) => {
   if (error) {
-    const warnning = document.createElement('h1');
+    const warnning = document.createElement("h1");
     warnning.textContent = `Error, ${error}`;
     resultRenderContainer.innerHTML = "";
     resultRenderContainer.appendChild(warnning);
   } else {
     if (response.length === 0) {
-      const noMovies = document.createElement('p');
+      const noMovies = document.createElement("p");
       noMovies.textContent = "Sorry, NO Movies found with the name you entered";
       resultRenderContainer.innerHTML = "";
       resultRenderContainer.appendChild(noMovies);
     } else {
-      resultRenderContainer.innerHTML = ""
+      resultRenderContainer.innerHTML = "";
       response.forEach(movie => {
         const imagesUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
-        const {
-          movieContainer,
-          movieImage,
-          movieTitle,
-        } = createMovieNode(
-          ['movieContainer', 'movieImage', 'movieTitle'], ['div', 'img', 'span'], ['resultRender__containerMovie', 'resultRender__containerMovie--img', 'resultRender__containerMovie--spanTitle']
+        const { movieContainer, movieImage, movieTitle } = createMovieNode(
+          ["movieContainer", "movieImage", "movieTitle"],
+          ["div", "img", "span"],
+          [
+            "resultRender__containerMovie",
+            "resultRender__containerMovie--img",
+            "resultRender__containerMovie--spanTitle"
+          ]
         );
         movieImage.src = `${imagesUrl}${movie.backdrop_path}`;
         movieTitle.textContent = movie.original_title;
         resultRenderContainer.appendChild(movieContainer);
         movieContainer.appendChild(movieImage);
         movieContainer.appendChild(movieTitle);
-      })
-
+      });
     }
   }
 };
