@@ -142,3 +142,4 @@ navbar__formsearch.addEventListener("click", e => {
   e.preventDefault();
   scrollToResult();
 });
+
