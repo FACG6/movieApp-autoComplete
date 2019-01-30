@@ -1,6 +1,4 @@
-
-const input = document.querySelector('.navbar__form--input');
-const inputValue = input.value.trim();
+const inputValue = navbar__forminput.value.trim();
 
 input.addEventListener('input', () => {
     fetch(inputValue, 'POST', 'auto-complete', (error, response) => {
@@ -8,10 +6,15 @@ input.addEventListener('input', () => {
     })
 });
 
-const createMovieNode = (elementsName, tagsName) => {
+const createMovieNode = (elementsName, tagsName, className) => {
   if (elementsName.length !== tagsName.length) return "error";
   let nodes = {};
-  elementsName.map((e, i) => (nodes[e] = document.createElement(tagsName[i])));
+  elementsName.map((e, i) =>{
+    nodes[e] = document.createElement(tagsName[i]);
+    nodes[e].classList.add(className[i])
+
+  })
+
   return nodes;
 };
 
@@ -20,13 +23,6 @@ function appendElement(requestelementsName, append) {
   requestelementsName.forEach(requestlement =>
     append.appendChild(requestlement)
   );
-}
-
-function addClasses(elementsName, className) {
-  if (elementsName.length !== className.length) return "error";
-  let nodes = {};
-  elementsName.map((e, i) => (nodes[e] = e.classList.add(className[i])));
-  return nodes;
 }
 
 function querySelectors(selectorsName, enterTypeofQuery) {
@@ -38,12 +34,17 @@ function querySelectors(selectorsName, enterTypeofQuery) {
   return elements;
 }
 
+function scrollToResult() {
+  setTimeout(() => (html.scrollTop = resultRender.offsetTop), 200);
+}
+
 const {
   html,
   navbar,
   navbar__h1,
   navbar__form,
   navbar__forminput,
+  navbar__formsearch,
   homeSection,
   resultRender
 } = querySelectors(
@@ -53,6 +54,7 @@ const {
     "navbar__h1",
     "navbar__form",
     "navbar__forminput",
+    "navbar__formsearch",
     "homeSection",
     "resultRender"
   ],
@@ -61,7 +63,8 @@ const {
     ".navbar",
     ".navbar__h1",
     ".navbar__form",
-    ".navbar__forminput",
+    ".navbar__form--input",
+    "navbar__form--search",
     ".homeSection",
     ".resultRender"
   ]
@@ -89,10 +92,15 @@ const renderMovies => (error, response){
         overView
       } = createMovieNode(
         ['movieContainer', 'movieImage', 'movieTitle', 'overView '],
-          ['div', 'img', 'h3', 'p'],
-          ['movieContainer', 'movieImage', 'movieTitle', 'overView']
+        ['div', 'img', 'h3', 'p'],
+		['movieContainer', 'movieImage', 'movieTitle', 'overView']
           );
       appendElement(...movieResult)
     }
   }
 };
+
+navbar__formsearch.addEventListener("click", e => {
+  e.preventDefault();
+  scrollToResult();
+});
