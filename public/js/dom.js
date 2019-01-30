@@ -61,7 +61,7 @@ const {
 
 navbar__formsearch.addEventListener('submit', e => {
   e.preventDefault();
-  const api_url = `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${navbar__forminput}`;
+  const api_url = `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${inputValue}`;
   fetch(null, "GET", api_url, (error, movies) => {
     renderMovies(error, movies.results);
   })
