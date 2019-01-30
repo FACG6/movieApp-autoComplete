@@ -64,7 +64,7 @@ const {
     ".navbar__h1",
     ".navbar__form",
     ".navbar__form--input",
-    "navbar__form--search",
+    ".navbar__form--search",
     ".homeSection",
     ".resultRender"
   ]
