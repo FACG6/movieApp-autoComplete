@@ -70,14 +70,12 @@ navbar__formsearch.addEventListener('click', (e) => {
   resultRender.classList.remove('resultRender')
   if (!navbar__forminput.value) {
     resultRenderContainer.innerHTML = "";
-    const {
-      warning
-    } = createMovieNode(['warning'], ['p'], ['resultRender__container--warning']);
+    const {warning} = createMovieNode(['warning'], ['p'], ['resultRender__container--warning']);
     warning.textContent = "please, Enter a Movie Name";
     resultRenderContainer.appendChild(warning);
   } else {
     const inputValue = navbar__forminput.value.trim();
-    const api_url = getMovieUrl(inputValue);
+    const api_url = `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${inputValue}`;
     fetch(null, "GET", api_url, (error, movies) => {
       renderMovies(error, movies.results);
     })
@@ -112,6 +110,7 @@ const renderMovies = (error, response) => {
     } else {
       resultRenderContainer.innerHTML = ""
       response.forEach(movie => {
+        const imagesUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
         const {
           movieContainer,
           movieImage,
@@ -119,7 +118,7 @@ const renderMovies = (error, response) => {
         } = createMovieNode(
           ['movieContainer', 'movieImage', 'movieTitle'], ['div', 'img', 'span'], ['resultRender__containerMovie', 'resultRender__containerMovie--img', 'resultRender__containerMovie--spanTitle']
         );
-        movieImage.src = getImageUrl(movie.poster_path);
+        movieImage.src = `${imagesUrl}${movie.poster_path}`;
         movieImage.setAttribute('alt',  movie.original_title);
         movieTitle.textContent = movie.original_title;
         resultRenderContainer.appendChild(movieContainer);
