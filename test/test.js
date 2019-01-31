@@ -1,9 +1,5 @@
 const tape = require("tape");
 const getData = require("../src/filterResults");
-const { 
-  getImageUrl,
-   getMovieUrl
-  } = require("../public/js/fetch");
 
 tape("testing filterResults", t => {
   t.deepEquals(
@@ -11,13 +7,9 @@ tape("testing filterResults", t => {
     ["The Hunger Games: Mockingjay – Part 1"],
     "pass"
   );
+  t.deepEquals(getData({ theData: "horrible" }), ["Horrible Bosses 2"], "pass");
   t.deepEquals(
-    getData({ theData: "horrible" }),
-    ["Horrible Bosses 2"],
-    "pass"
-  );
-  t.deepEquals(
-    getData({theData: "fa"}),
+    getData({ theData: "fa" }),
     [
       "Far from the Madding Crowd",
       "Father Figures",
@@ -75,10 +67,3 @@ tape("testing filterResults", t => {
   );
   t.end();
 });
-
-tape("testing getImageUrl", t => {
-  const actual = getImageUrl('baby driver');
-  const expected = "https://image.tmdb.org/t/p/w600_and_h900_bestv2baby driver";
-      t.deepEquals(actual, expected, "pass")
-      t.end();
-  });
