@@ -7,5 +7,3 @@ const getData = value => {
   return moviesObjects.map(movieObject => movieObject.title);
 };
 if (module) module.exports = getData;
-
-

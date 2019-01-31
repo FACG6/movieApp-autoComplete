@@ -60,11 +60,10 @@ const {
 );
 
 navbar__forminput.addEventListener("input", () => {
-  if (navbar__forminput.value.trim()) {
-    const inputValue = navbar__forminput.value.trim();
-    fetch(inputValue, "POST", "/auto-complete", (error, response) => {
-      renderAutoComplete(error, response);
-    });
+  const inputValue = navbar__forminput.value.trim();
+
+  if (inputValue) {
+    fetch(inputValue, "POST", "/auto-complete", renderAutoComplete);
   }
 });
 
@@ -95,24 +94,36 @@ const renderAutoComplete = (error, suggestions) => {
     if (error === "500") fetch(null, "GET", "/server-error", null);
     else fetch(null, "GET", "/jgjs", null);
   }
-  movieList.innerHTML = "";
+  while (movieList.firstChild) movieList.removeChild(movieList.firstChild);
   suggestions.forEach(movie => {
-    const {movieOption} = createMovieNode(['movieOption'], ['option'], ['dataList__movieOption']);
+    const { movieOption } = createMovieNode(
+      ["movieOption"],
+      ["option"],
+      ["dataList__movieOption"]
+    );
     movieOption.value = movie;
     movieList.appendChild(movieOption);
-  })
-}
+  });
+};
 const renderMovies = (error, response) => {
   if (error) {
     // const warnning = document.createElement('h1');
-    const { warnningMsg } = createMovieNode(['warnningMsg'], ['h1'], ['resultRender__container--warning'])
+    const { warnningMsg } = createMovieNode(
+      ["warnningMsg"],
+      ["h1"],
+      ["resultRender__container--warning"]
+    );
     warnningMsg.textContent = `Error, ${error}`;
     resultRenderContainer.innerHTML = "";
     resultRenderContainer.appendChild(warnningMsg);
   } else {
     if (response.length === 0) {
       // const noMovies = document.createElement('p');
-      const { sorryMsg } = createMovieNode(['sorryMsg'], ['p'], ['resultRender__container--sorryMsg'])
+      const { sorryMsg } = createMovieNode(
+        ["sorryMsg"],
+        ["p"],
+        ["resultRender__container--sorryMsg"]
+      );
       sorryMsg.textContent = "Sorry, NO Movies found with the name you entered";
       resultRenderContainer.innerHTML = "";
       resultRenderContainer.appendChild(sorryMsg);
@@ -130,7 +141,7 @@ const renderMovies = (error, response) => {
           ]
         );
         movieImage.src = `${imagesUrl}${movie.poster_path}`;
-        movieImage.setAttribute('alt',  movie.original_title);
+        movieImage.setAttribute("alt", movie.original_title);
         movieTitle.textContent = movie.original_title;
         resultRenderContainer.appendChild(movieContainer);
         movieContainer.appendChild(movieImage);
