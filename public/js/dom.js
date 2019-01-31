@@ -107,7 +107,6 @@ const renderAutoComplete = (error, suggestions) => {
 };
 const renderMovies = (error, response) => {
   if (error) {
-    // const warnning = document.createElement('h1');
     const { warnningMsg } = createMovieNode(
       ["warnningMsg"],
       ["h1"],
@@ -150,8 +149,3 @@ const renderMovies = (error, response) => {
     }
   }
 };
-
-navbar__formsearch.addEventListener("click", e => {
-  e.preventDefault();
-  scrollToResult();
-});

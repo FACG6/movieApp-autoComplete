@@ -1,16 +1,12 @@
 const fs = require("fs");
 const path = require("path");
-const querystring = require("querystring");
 const getData = require("./filterResults");
 
 const handleHome = (req, res) => {
   const filePath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      res.writeHead(500, {
-        "content-type": "text/html"
-      });
-      res.end("<h1>Internal server error</h1>");
+      handleServerError(request, response);
     } else if (file) {
       res.writeHead(200, {
         "content-type": "text/html"
@@ -32,10 +28,7 @@ const handleStatics = (request, response) => {
   const filePath = path.join(__dirname, "..", ...endpoint.split("/"));
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      response.writeHead(500, {
-        "content-type": "text/html"
-      });
-      response.end("<h1>Internal Server Error</h1>");
+      handleServerError(request, response);
     } else {
       response.writeHead(200, {
         "content-type": fileTypes[extention]
@@ -47,38 +40,33 @@ const handleStatics = (request, response) => {
 };
 
 const handleAutoComplete = (request, response) => {
-  let allData = "theData=";
+  let allData = "";
   request.on("data", chunckData => {
     allData += chunckData;
   });
   request.on("end", () => {
-    const converteData = querystring.parse(allData);
-    const data = getData(converteData);
+    const data = getData(allData);
     response.writeHead(200, { "content-type": "application/json" });
     response.end(JSON.stringify(data));
   });
 };
 
 const handleNotFoundError = (request, response) => {
-  response.writeHead(200, {
+  response.writeHead(404, {
     "Content-Type": "text/html"
   });
   response.write("<h1>404 Page not found !!!</h1>");
   response.end();
 };
 
-const handleServerError = (request, response) => {
-  response.writeHead(200, {
-    "Content-Type": "text/html"
-  });
-  response.write("<h1>Internal server error!!</h1>");
-  response.end();
+const handleServerError = (req, res) => {
+  res.writeHead(500, { "content-type": "text/html" });
+  res.end("<h1>Internal Server Error !!</h1>");
 };
 
 module.exports = {
   handleHome,
   handleStatics,
   handleAutoComplete,
-  handleNotFoundError,
-  handleServerError
+  handleNotFoundError
 };
