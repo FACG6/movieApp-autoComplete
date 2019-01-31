@@ -8,4 +8,3 @@ const getData = value => {
 };
 if (module) module.exports = getData;
 
-

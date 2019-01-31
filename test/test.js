@@ -1,23 +1,20 @@
 const tape = require("tape");
 const getData = require("../src/filterResults");
-const { 
-  getMovieUrl,
-  getImageUrl
-} = require("../public/js/fetch")
+const {
+  getImageUrl,
+  getMovieUrl
+} = require('../public/js/fetch');
+
 
 tape("testing filterResults", t => {
   t.deepEquals(
-    getData({ searchInput: "the hunger" }),
+    getData({ theData: "the hunger" }),
     ["The Hunger Games: Mockingjay – Part 1"],
     "pass"
   );
+  t.deepEquals(getData({ theData: "horrible" }), ["Horrible Bosses 2"], "pass");
   t.deepEquals(
-    getData({ searchInput: "horrible" }),
-    ["Horrible Bosses 2"],
-    "pass"
-  );
-  t.deepEquals(
-    getData({searchInput: "fa"}),
+    getData({ theData: "fa" }),
     [
       "Far from the Madding Crowd",
       "Father Figures",
@@ -27,12 +24,12 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData({ searchInput: "ali" }),
+    getData({ theData: "ali" }),
     ["Alice Through the Looking Glass", "Alien: Covenant"],
     "pass"
   );
   t.deepEquals(
-    getData({ searchInput: "the s" }),
+    getData({ theData: "the s" }),
     [
       "The SpongeBob Movie: Sponge Out of Water",
       "The Second Best Exotic Marigold Hotel",
@@ -52,7 +49,7 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData({ searchInput: "be" }),
+    getData({ theData: "be" }),
     [
       "Beyond the Reach",
       "Ben-Hur",
@@ -69,19 +66,18 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData({ searchInput: "sa" }),
+    getData({ theData: "sa" }),
     ["San Andreas", "Sausage Party", "Same Kind of Different as Me", "Samson"],
     "pass"
   );
   t.end();
 });
 
-tape("testing getMovieUrl", t => {
-  t.deepEquals(
-    getMovieUrl('baby driver'),
-    'https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=baby%20driver',
-    "pass"
-  );
-  t.end();
+tape("testing getImageUrl", t => {
+  const actual = getImageUrl('baby driver');
+  const expected = "https://image.tmdb.org/t/p/w600_and_h900_bestv2baby driver";
+      t.deepEquals(actual, expected, "pass")
+      t.end();
 });
                 
+              

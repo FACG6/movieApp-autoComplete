@@ -1,7 +1,7 @@
 const fetch = (value, method, url, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
+    if (xhr.readyState === 4) {
       if (xhr.status !== 200) {
         const error = xhr.status;
         callback(error, null);
@@ -10,8 +10,6 @@ const fetch = (value, method, url, callback) => {
           callback(null, JSON.parse(xhr.responseText));
         else callback(`Error, Data not convertable`, null);
       }
-      callback(null, JSON.parse(xhr.responseText));
-
     }
   };
   xhr.open(method, url);
@@ -26,9 +24,11 @@ const getImageUrl = (moviename) => {
   return `https://image.tmdb.org/t/p/w600_and_h900_bestv2${moviename}`;
 }
 
-module.exports = {
-  getMovieUrl
-  getImageUrl,
-};
+if(module) { 
+    module.exports = {
+    getMovieUrl,
+    getImageUrl
+  };
+}
 
 
