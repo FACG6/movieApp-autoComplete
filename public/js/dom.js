@@ -49,7 +49,8 @@ const {
     "resultRender",
     "movieList",
     "resultRenderContainer"
-  ], [
+  ],
+  [
     "html",
     ".navbar",
     ".navbar__h1",
@@ -59,7 +60,7 @@ const {
     ".homeSection",
     ".resultRender",
     ".movieList",
-    '.resultRender__container'
+    ".resultRender__container"
   ]
 );
 

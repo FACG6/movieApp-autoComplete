@@ -1,54 +1,56 @@
 # movieApp-autoComplete
 
-** # We are Akshenha **
+# We are Akshenha Team
 
-The APIs we used:
+## What? 
+Our app is a movie autocomplete app that helps user search for any movies they're interested it.
 
-https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json
+As long as the user is writing letters in the input bar, several suggestions of movies will appear. 
 
-Why
+## How? 
+We have a collection of movie data that we will be filtered automatically. We also used an API to get data about the movie.
 
-To learn how to quickly find and select words from a list of suggestions, as we type.
-To take the result and search about it using an API .
+## Why autocomplete?
 
-User Story
+To help users quickly find and select movie names from a list of suggestions as we type.
 
-The user want to search for a movie .
-The user want to autocomplete the movie name.
-The user will see movie image and its name.
 
-Architecture
+## User Story
 
-public
+* The user want to search for a movie.
+* The user want to autocomplete the movie name.
+* The user will see movie image and its name.
+
+## Architecture
+
+1. public
 	css
 	  styles.css
 	js  
 	  dom.js
 	  fetch.js
 	index.html
-src
-    filterResults.js
-    handlers.js
-    movies.json
-	router.js
-	server.js
-test
-test.js
-README.md
-.gitignore
-package-lock.json
-package.json
+2. src
+* filterResults.js
+*  handlers.js
+* movies.json
+* router.js
+* server.js
+3. test
+* test.js
+4. README 
+5. .gitignore 
+6. package-lock.json 
+6. package.json 
 
-Goals of this week 
+## Skills We Used:
 
- We expect back-end basics.
+1. Basic back-end services, such as building HTTP server. 
+2. Modularizing our app. 
+3. Testing our Functions.
+4. Hosting our project on heroku.
+5. Using module.exports and require to break a single large server file into smaller modules.
+6. Responsive App.
+7. Accessibility .
 
- Host our project on heroku.
 
- Use module.exports and require to break a single large server file into smaller modules.
-
- Consider how to create server and make server file structure.
-
- Responsive App.
-
- Accessibility .

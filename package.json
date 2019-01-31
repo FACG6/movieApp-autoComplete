@@ -22,7 +22,7 @@
     "url": "https://github.com/FACG6/movieApp-autoComplete/issues"
   },
   "homepage": "https://github.com/FACG6/movieApp-autoComplete#readme",
-  "dependencies": {
+  "devDependencies": {
     "nodemon": "^1.18.9",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.2"
