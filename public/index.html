@@ -15,8 +15,9 @@
     <nav class="navbar">
       <h1 class="navbar__h1">Akshenha</h1>
       <form action="" class="navbar__form">
-        <input list="movieList" type="text" name="input" placeholder="Movie Name" class="navbar__form--input" />
-        <button value="Search" class="navbar__form--search">Search</button>
+        <label for='movieInput' aria-labelledby="movieInput" aria-label="hidden" title="search_input"> </label>
+        <input id='movieInput' list="movieList" type="text" name="input" placeholder="Movie Name" class="navbar__form--input" />
+        <button name='searchButton' value="Search" class="navbar__form--search">Search</button>
         <datalist class="movieList" id="movieList"></datalist>
       </form>
     </nav>

@@ -47,15 +47,14 @@ html {
   border-radius: 8px;
   color: rgb(207, 169, 0);
   border: 2px rgb(207, 169, 0) solid;
-  background-color: black;  
-  font-family: 'Varela Round', sans-serif;
-
+  background-color: black;
+  font-family: "Varela Round", sans-serif;
 }
-.navbar__form--search:hover{
+.navbar__form--search:hover {
   cursor: pointer;
   color: black;
   border: 2px rgb(207, 169, 0) solid;
-  background-color: rgb(207, 169, 0);  
+  background-color: rgb(207, 169, 0);
 }
 .navbar__form {
   flex: 3;
@@ -76,14 +75,14 @@ html {
 
 .homeSection__h1 {
   font-size: 70px;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
   color: rgb(207, 169, 0);
 }
 
 .homeSection__h4 {
   font-size: 30px;
   padding-top: 30px;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
   color: rgb(207, 169, 0);
 }
 
@@ -91,7 +90,7 @@ html {
   text-align: center;
   font-size: 80px;
   padding-top: 100px;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
   text-decoration: underline;
 }
 
@@ -126,9 +125,8 @@ html {
 
 .resultRender__containerMovie--spanTitle {
   font-size: 30px;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
   padding-top: 10px;
-
 }
 
 @media only screen and (max-width: 850px) {
@@ -149,8 +147,7 @@ html {
     padding: 0px;
     margin: 0;
     border-radius: 5px;
-    font-family: 'Varela Round', sans-serif;
-
+    font-family: "Varela Round", sans-serif;
   }
 
   .resultRender__h1 {
@@ -173,14 +170,32 @@ html {
   }
 }
 /******/
-.resultRender__container--warning{
+.resultRender__container--warning {
   font-size: 14px;
 }
 
-.dataList__movieOption{
+.dataList__movieOption {
   font-size: 14px;
 }
 
-.resultRender__container--sorryMsg{
+.resultRender__container--sorryMsg {
   font-size: 14px;
+}
+.resultRender__container--warning {
+  font-family: "Major Mono Display", monospace;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  text-shadow: 5px 5px 5px #bdbdbd;
+  color: rgb(207, 169, 0);
+  margin-bottom: 50px;
+}
+.resultRender__container--sorryMsg {
+  font-family: "Major Mono Display", monospace;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  text-shadow: 5px 5px 5px #bdbdbd;
+  color: rgb(207, 169, 0);
+  margin-bottom: 50px;
 }
