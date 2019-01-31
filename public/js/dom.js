@@ -1,8 +1,3 @@
-const {
-  getMovieUrl
-  getImageUrl
-} = require('./fetch');
-
 const createMovieNode = (elementsName, tagsName, className) => {
   if (elementsName.length !== tagsName.length) return "error";
   let nodes = {};
@@ -86,7 +81,8 @@ navbarFormsearch.addEventListener("click", e => {
     resultRenderContainer.appendChild(warning);
   } else {
     const inputValue = navbarFormInput.value.trim();
-    const api_url = getMovieUrl(inputValue);
+    const api_url = `https://api.themoviedb.org/3/search/movie?api_key=6b4029e64c1862a24fbb74c05d0aace8&language=en-US&query=${inputValue}`;
+
     fetch(null, "GET", api_url, (error, movies) => {
       renderMovies(error, movies.results);
     });
@@ -143,7 +139,9 @@ const renderMovies = (error, response) => {
             "resultRender__containerMovie--spanTitle"
           ]
         );
-        movieImage.src = getImageUrl(movie.poster_path);;
+        movieImage.src = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
+          movie.poster_path
+        }`;
         movieImage.setAttribute("alt", movie.original_title);
         movieTitle.textContent = movie.original_title;
         resultRenderContainer.appendChild(movieContainer);
@@ -153,5 +151,3 @@ const renderMovies = (error, response) => {
     }
   }
 };
-
-
