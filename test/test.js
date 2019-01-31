@@ -1,5 +1,10 @@
 const tape = require("tape");
 const getData = require("../src/filterResults");
+const {
+  getImageUrl,
+  getMovieUrl
+} = require('../public/js/fetch');
+
 
 tape("testing filterResults", t => {
   t.deepEquals(
@@ -44,7 +49,7 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData({ searchInput: "be" }),
+    getData({ theData: "be" }),
     [
       "Beyond the Reach",
       "Ben-Hur",
@@ -61,9 +66,18 @@ tape("testing filterResults", t => {
     "pass"
   );
   t.deepEquals(
-    getData({ searchInput: "sa" }),
+    getData({ theData: "sa" }),
     ["San Andreas", "Sausage Party", "Same Kind of Different as Me", "Samson"],
     "pass"
   );
   t.end();
 });
+
+tape("testing getImageUrl", t => {
+  const actual = getImageUrl('baby driver');
+  const expected = "https://image.tmdb.org/t/p/w600_and_h900_bestv2baby driver";
+      t.deepEquals(actual, expected, "pass")
+      t.end();
+});
+                
+              

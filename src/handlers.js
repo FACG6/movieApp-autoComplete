@@ -64,9 +64,13 @@ const handleServerError = (req, res) => {
   res.end("<h1>Internal Server Error !!</h1>");
 };
 
-module.exports = {
-  handleHome,
-  handleStatics,
-  handleAutoComplete,
-  handleNotFoundError
-};
+if(module) {
+  module.exports = {
+    handleHome,
+    handleStatics,
+    handleAutoComplete,
+    handleNotFoundError
+  };
+}
+
+
